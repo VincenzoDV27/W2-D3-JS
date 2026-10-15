@@ -220,7 +220,7 @@ switch (true) {
   case massaTotale < 500:
     console.log("Carico leggero");
     break;
-  case massaTotale <= 700:
+  case massaTotale < 700:
     console.log("Carico Medio");
     break;
   case massaTotale <= 900:
@@ -255,6 +255,21 @@ console.log(starWarsCharacters);
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+let max = starWarsCharacters[0];
+let min = starWarsCharacters[0];
+
+for (let i = 0; i < starWarsCharacters.length; i++) {
+  if (Number(starWarsCharacters[i].height) > Number(max.height)) {
+    max = starWarsCharacters[i];
+  }
+  if (Number(starWarsCharacters[i].height) < Number(min.height)) {
+    min = starWarsCharacters[i];
+  }
+}
+
+console.log(`Piu alto: ${max.name} (${max.height} cm)`);
+
+console.log(`Piu basso ${min.name} (${min.height} cm)`);
 
 /* ESERCIZIO 9 — Rimuovi i femminili dai nomi (cicli annidati)
    Sull'array "nomi" dell'esercizio 1: for esterno su nomi, for interno su personaggiFemminili.
@@ -263,6 +278,18 @@ console.log(starWarsCharacters);
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+console.log(`Lunghezza nomi prima: ${NOMI.length}`);
+for (let i = 0; i < NOMI.length; i++) {
+  for (let j = 0; j < personaggiFemminili.length; j++) {
+    if (NOMI[i] === personaggiFemminili[j].name) {
+      NOMI.splice(i, 1);
+      i--;
+      break;
+    }
+  }
+}
+console.log(`Lunghezza nomi dopo: ${NOMI.length}`);
+console.log(NOMI);
 
 /* ESERCIZIO 10 — Personaggio casuale
    indice = Math.floor(Math.random() * starWarsCharacters.length)
@@ -272,6 +299,20 @@ console.log(starWarsCharacters);
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+let indice = Math.floor(Math.random() * starWarsCharacters.length);
+let personaggio = starWarsCharacters[indice];
+console.log(personaggio.name);
+if (personaggio.gender === "male") {
+  console.log(`Lui è alto ${personaggio.height} cm`);
+} else {
+  console.log(`Lei è alta ${personaggio.height} cm`);
+}
+
+if (personaggio.hair_color !== "n/a" && personaggio.hair_color !== "none") {
+  console.log(`Capelli: ${personaggio.hair_color}`);
+} else {
+  console.log(`Senza capelli`);
+}
 
 /* --EXTRA-- ESERCIZIO 11 — Conta per colore di occhi
    For...in sulle chiavi di perColoreOcchi.
@@ -279,3 +320,6 @@ console.log(starWarsCharacters);
 */
 
 /* SCRIVI QUI LA TUA RISPOSTA */
+for (const colore in perColoreOcchi) {
+  console.log(`${colore} : ${perColoreOcchi[colore].length} personaggi`);
+}
